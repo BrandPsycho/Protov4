@@ -4,22 +4,28 @@ namespace Protov4.DAO
 {
     public class AdminController:Controller
     {
+        private readonly MikuTechFactory db;
+
+        public AdminController(IConfiguration configuration)
+        {
+            db = new MikutechDAO(configuration);
+        }
         //private readonly DBMongo _context;
 
         //public AdminController(DBMongo context) { 
-        
+
         //    _context = context;
         //}
         public IActionResult Index()
         {
             return View();
         }
-        //public async Task<IActionResult> Index()
-        //{
-        //    return _context.Compras != null ?
-        //                View(await _context.Compras.ToListAsync()) :
-        //                Problem("Entity set 'ScrapDbContext.Compras'  is null.");
-        //}
+        public async Task<IActionResult> Index()
+        {
+            return db.Compras != null ?
+                        View(await _context.Compras.ToListAsync()) :
+                        Problem("Entity set 'ScrapDbContext.Compras'  is null.");
+        }
 
         public IActionResult Create()
         {
