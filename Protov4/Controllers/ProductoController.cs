@@ -69,10 +69,8 @@ namespace Protov4.Controllers
                 Id = p.Id,
                 Nombre_Producto = p.Nombre_Producto,
                 Precio = p.Precio,
-                Imagen = p.Imagen,
                 Marca = p.Marca,
-                Existencia = p.Existencia,
-                Tipo = p.Tipo
+                Existencia = p.Existencia
             }).ToList();
 
             return ProductoDTO;
