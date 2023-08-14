@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Protov4.Models;
 using MongoDB.Driver;
 using Protov4.DAO;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +17,8 @@ builder.Services.AddTransient<UsuariosDAO>();
 builder.Services.AddSingleton<IMongoClient>(new MongoClient(configuration.GetConnectionString("MongoDBConnection")));
 builder.Services.AddScoped<DBMongo>();
 builder.Services.AddScoped<MikuTechFactory, MikutechDAO>();
+builder.Services.Configure<ProductosDatabaseSettings>(
+    builder.Configuration.GetSection("ProductosDataBase"));
 
 
 var app = builder.Build();
